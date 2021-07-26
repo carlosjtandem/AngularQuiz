@@ -8,7 +8,7 @@
                 <img src="/assets/img/logo.png" style="width:250px;height:250px;" class="offset-s3">
               </div>
             <div class="card-content">
-                <form >
+                <form #registerForm="ngForm" (ngSubmit)="OnSubmit(Name.value,Email.value)">
                     <div class="row">
                         <div class="input-field col s12">
                           <i class="material-icons prefix">account_circle</i>
@@ -19,13 +19,13 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <i class="material-icons prefix">mail_outline</i>
-                            <input type="text" name="Email" #Email ngModel>
+                            <input type="text" name="Email" #Email ngModel required [pattern]="emailPattern">
                             <label>Email</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">   
-                            <button class="btn-large btn-submit" type="submit">START</button>
+                            <button class="btn-large btn-submit" type="submit" [disabled]="!registerForm.valid">START</button>
                         </div>
                     </div>
                 </form>
