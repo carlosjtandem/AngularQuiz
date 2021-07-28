@@ -13,7 +13,7 @@ export class QuizComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizService.seconds = 0;
-    this.quizService.qnProgress = 1;
+    this.quizService.qnProgress = 0;
     
     this.quizService.getQuestions().subscribe(
       (data: any)=>{
@@ -30,6 +30,17 @@ export class QuizComponent implements OnInit {
       this.quizService.seconds++;
       localStorage.setItem('seconds', this.quizService.seconds.toString());
     }, 1000);
+  }
+
+  Answer(qID: any, choice:any) {
+    this.quizService.qns[this.quizService.qnProgress].answer = choice;
+    localStorage.setItem('qns', JSON.stringify(this.quizService.qns));
+    this.quizService.qnProgress++;
+    localStorage.setItem('qnProgress', this.quizService.qnProgress.toString());
+    if (this.quizService.qnProgress == 10) {
+      clearInterval(this.quizService.timer);
+      this.route.navigate(['/result']);
+    }
   }
 
 }
