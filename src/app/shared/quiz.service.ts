@@ -6,7 +6,19 @@ import { HttpClient } from '@angular/common/http';
 export class QuizService {
   //---------------- Properties---------------
   readonly rootUrl = 'https://localhost:44376';
-  constructor(private http: HttpClient) { }
+
+   qns: any[];
+  seconds: number;
+  timer:any;
+  qnProgress: number;
+  correctAnswerCount: number = 0;
+
+  constructor(private http: HttpClient) {
+    this.qns = [];
+    this.seconds=0;
+    this.timer=0;
+    this.qnProgress=0;
+   }
 
   //---------------- Http Methods---------------
 
@@ -16,6 +28,10 @@ export class QuizService {
       Email: email
     }
     return this.http.post(this.rootUrl + '/api/InsertParticipant', body);
+  }
+
+  getQuestions() {
+    return this.http.get(this.rootUrl + '/api/Questions');
   }
 
 }
