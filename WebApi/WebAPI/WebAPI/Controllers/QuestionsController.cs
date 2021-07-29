@@ -79,8 +79,15 @@ namespace WebAPI.Controllers
 
     // POST api/<QuestionsController>
     [HttpPost]
-    public void Post([FromBody] string value)
+    [Route("api/Answers")]
+    public void Post(int[] qIDs)
     {
+      var result = context.question
+                    .AsEnumerable()
+                    .Where(y =>  qIDs.Contains(y.QnID))
+                    .OrderBy(x => { return Array.IndexOf(qIDs, x.QnID); })
+                    .Select(z => z.Answer)
+                    .ToArray();
     }
 
     // PUT api/<QuestionsController>/5
