@@ -79,7 +79,7 @@ namespace WebAPI.Controllers
 
     // POST api/<QuestionsController>
     [HttpPost]
-    [Route("api/Answers")]
+    //[Route("api/Answers")]
     public void Post(int[] qIDs)
     {
       var result = context.question

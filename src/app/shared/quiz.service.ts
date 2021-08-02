@@ -50,8 +50,8 @@ export class QuizService {
     return this.http.get(this.rootUrl + '/api/Questions');
   }
   getAnswers() {
-    var body = this.qns.map(x => x.QnID);
-    return this.http.post(this.rootUrl + '/api/Answers', body);
+    var body = this.qns.map(x => x.qnID);
+    return this.http.post(this.rootUrl + '/api/Questions', body);
   }
 
   // submitScore() {

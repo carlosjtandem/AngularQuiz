@@ -19,6 +19,7 @@ export class ResultComponent implements OnInit {
 
       this.quizService.getAnswers().subscribe(
         (data: any) => {
+          console.log(data);
           this.quizService.correctAnswerCount = 0;
           this.quizService.qns.forEach((e, i) => {
             if (e.answer == data[i])
